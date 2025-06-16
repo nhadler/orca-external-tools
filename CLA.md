@@ -24,5 +24,6 @@ You accept and agree to the following terms and conditions for Your Contribution
 8. You agree to notify FACCTs of any facts or circumstances of which you become aware that would make these representations inaccurate in any respect.
 
 Please sign: __________________________________ Date: ________________
+
 This is a legal contract containing Personally Identifiable Information.
-Please refer to https://www.FACCTs.de/privacy/ for the policy governing how this information is used and shared.
+Please refer to https://www.faccts.de/privacy/ for the policy governing how this information is used and shared.
