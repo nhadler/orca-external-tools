@@ -10,5 +10,5 @@ with warnings.catch_warnings():
 
 def init(model) -> FAIRChemCalculator:
     """Initialize an UmaCalculator instance."""
-    predictor=pretrained_mlip.get_predict_unit("uma-s-1", device="cpu")
+    predictor=pretrained_mlip.get_predict_unit("uma-s-1", device="cuda")
     return FAIRChemCalculator(predictor, task_name=model)
