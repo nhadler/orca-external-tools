@@ -24,6 +24,7 @@ def run_uma(
         model: str,
         dograd: bool,
         nthreads: int,
+        device: str,
 ) -> tuple[float, list[float]]:
     """
     Runs an UMA calculation.
@@ -55,7 +56,7 @@ def run_uma(
     """
 
     # set up calculator
-    calc = calculator.init(model)
+    calc = calculator.init(model, device=device)
     # set the number of threads
     torch.set_num_threads(nthreads)
 
@@ -74,6 +75,7 @@ def run(arglist: list[str]):
 
     # get the model as a plain string
     model = str(args.model)
+    device = args.device
 
     # read the ORCA-generated input
     xyzname, charge, mult, ncores, dograd = common.read_input(args.inputfile)
@@ -87,7 +89,7 @@ def run(arglist: list[str]):
     natoms = len(atom_types)
     # run UMA calculator
     energy, gradient = run_uma(atom_types=atom_types, coordinates=coordinates, charge=charge, mult=mult,
-                                   model=model, dograd=dograd, nthreads=ncores)
+                                   model=model, dograd=dograd, nthreads=ncores, device=device)
     # convert to ORCA engrad
     common.write_engrad(orca_engrad, natoms, energy, dograd, gradient)
 

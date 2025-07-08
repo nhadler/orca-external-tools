@@ -308,6 +308,11 @@ def cli_parse(args: list[str], mode: RunMode) -> Namespace:
             type=Path,
             default=default_model_path,
             help=f'The directory to look for uma model files. Default: "{default_model_path}".')
+        parser.add_argument(
+            "--device",
+            type=str,
+            default="cuda",
+            help='The device to run the model on (e.g., "cpu", "cuda"). Default: "cuda".')
     if mode in (RunMode.Server, RunMode.Client):
         parser.add_argument(
             "-b", "--bind",

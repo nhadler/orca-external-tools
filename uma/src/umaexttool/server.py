@@ -15,6 +15,7 @@ from umaexttool import common, calculator
 app = Flask('umaserver')
 
 model: str = ''  # will hold the selected model
+selected_device: str = 'cuda'  # will hold the selected device, default to cuda
 
 calculators: dict[int | Callable] = {}  # will hold one UMACalculator per server thread
 
@@ -51,8 +52,9 @@ def run_uma():
     # Since the object is not thread-safe, we initialize one per server thread
     thread_id = threading.get_ident()
     global calculators
+    global selected_device
     if thread_id not in calculators:
-        calculators[thread_id] = calculator.init(model)
+        calculators[thread_id] = calculator.init(model, device=selected_device)
     calc = calculators[thread_id]
 
     # run the calculation
@@ -70,7 +72,9 @@ def run(arglist: list[str]):
 
     # get the absolute path of the model file as a plain string
     global model
+    global selected_device
     model = str(args.model)
+    selected_device = args.device
 
     # set up logging
     logger = logging.getLogger('waitress')
