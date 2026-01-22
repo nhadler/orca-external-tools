@@ -42,6 +42,7 @@ CALCULATOR_CLASSES = {
     "mlatom": ("oet.calculator.mlatom", "MlatomCalc"),
     "mopac": ("oet.calculator.mopac", "MopacCalc"),
     "uma": ("oet.calculator.uma", "UmaCalc"),
+    "uma_solvated": ("oet.calculator.uma_solvated", "UmaSolvatedCalc"),
     "xtb": ("oet.calculator.xtb", "XtbCalc"),
 }
 
