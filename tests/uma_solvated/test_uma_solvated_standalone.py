@@ -45,7 +45,13 @@ def cache_model_files(
 def run_uma_solvated(inputfile: str, output_file: str, extra_args: list[str] | None = None) -> None:
     # Run the wrapper with an increased timeout as loading the UMA model files might take a while
     args = extra_args if extra_args else []
-    run_wrapper(inputfile=inputfile, script_path=uma_solvated_script_path, outfile=output_file, args=args, timeout=60)
+    run_wrapper(
+        inputfile=inputfile,
+        script_path=uma_solvated_script_path,
+        outfile=output_file,
+        args=args,
+        timeout=60,
+    )
 
 
 class UmaSolvatedTests(unittest.TestCase):
@@ -95,7 +101,7 @@ class UmaSolvatedTests(unittest.TestCase):
         )
         # Run with --solvent none to disable solvation
         run_uma_solvated(input_file, output_file, extra_args=["--solvent", "none"])
-        
+
         expected_num_atoms = 3
         # These should match the regular UMA results
         expected_energy = -76.43352090249
@@ -139,7 +145,7 @@ class UmaSolvatedTests(unittest.TestCase):
         )
         # Run with water solvent
         run_uma_solvated(input_file, output_file, extra_args=["--solvent", "water"])
-        
+
         expected_num_atoms = 3
         # Energy should be different from vacuum due to solvation correction
 
@@ -169,7 +175,7 @@ class UmaSolvatedTests(unittest.TestCase):
             do_gradient=1,
         )
         run_uma_solvated(input_file, output_file, extra_args=["--solvent", "thf"])
-        
+
         expected_num_atoms = 2
 
         try:
